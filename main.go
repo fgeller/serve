@@ -9,7 +9,7 @@ import (
 	"runtime"
 )
 
-func open(url string) {
+func openURL(url string) {
 	switch runtime.GOOS {
 	case "darwin":
 		log.Println("Opening...")
@@ -35,17 +35,19 @@ func listener(i string) net.Listener {
 	return ln
 }
 
+func open(ln net.Listener, i string) {
+	_, p, err := net.SplitHostPort(ln.Addr().String())
+	if err != nil {
+		log.Fatal("Failed to identify host and port.", err)
+	}
+	url := fmt.Sprintf("http://%v:%v", i, p)
+	log.Printf("Serving at %v\n", url)
+	openURL(url)
+}
+
 func main() {
 	i := "0.0.0.0"
 	ln := listener(i)
-	go func() {
-		_, p, err := net.SplitHostPort(ln.Addr().String())
-		if err != nil {
-			log.Fatal("Failed to identify host and port.", err)
-		}
-		url := fmt.Sprintf("http://%v:%v", i, p)
-		log.Printf("Serving at %v\n", url)
-		open(url)
-	}()
+	go open(ln, i)
 	serve(ln)
 }
