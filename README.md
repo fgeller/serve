@@ -15,6 +15,12 @@ Simply start via `serve` which will choose a random port:
     2015/10/26 09:26:05 Serving at http://0.0.0.0:60794.
     2015/10/26 09:26:05 Opening...
 
+Or specify a port:
+
+    $ serve 3022
+    2015/10/26 09:43:36 Serving at http://0.0.0.0:3022
+    2015/10/26 09:43:36 Opening...
+
 Very similar to Python's `SimpleHTTPServer` module, which I had wrapped in the
 following bash function:
 
