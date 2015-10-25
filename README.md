@@ -9,6 +9,8 @@ Install via
 
 Make sure `$GOPATH/bin` is part of your `$PATH`.
 
+Or grab a pre-built binary from the [release section](https://github.com/fgeller/serve/releases) and place it in a location on your `$PATH`.
+
 Simply start via `serve` which will choose a random port:
 
     $ serve
