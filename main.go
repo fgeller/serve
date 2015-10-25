@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net"
@@ -27,8 +28,8 @@ func serve(ln net.Listener) {
 	}
 }
 
-func listener(i string) net.Listener {
-	ln, err := net.Listen("tcp", i+":0")
+func listener(i string, port string) net.Listener {
+	ln, err := net.Listen("tcp", i+":"+port)
 	if err != nil {
 		log.Fatal("Failed to listen:", err)
 	}
@@ -46,8 +47,13 @@ func open(ln net.Listener, i string) {
 }
 
 func main() {
+	flag.Parse()
+	port := flag.Arg(0)
+	if port == "" {
+		port = "0"
+	}
 	i := "0.0.0.0"
-	ln := listener(i)
+	ln := listener(i, port)
 	go open(ln, i)
 	serve(ln)
 }
