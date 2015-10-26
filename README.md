@@ -1,7 +1,7 @@
 # serve
 
-Tiny app to serves files in current directory via HTTP. Attempts to open the
-default browser at the served location for Linux and OSX.
+Tiny app to serve the current directory via HTTP. Attempts to open the default browser 
+at the served location for Linux and OSX.
 
 Install via
 
