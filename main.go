@@ -18,6 +18,11 @@ func openURL(url string) {
 	case "linux":
 		log.Println("Opening...")
 		exec.Command("xdg-open", url).Run()
+	case "windows":
+		log.Println("Opening...")
+		exec.Command("cmd.exe", "/C", "start", url).Run()
+	default:
+		log.Printf("Don't know how to open URL on %v.\n", runtime.GOOS)
 	}
 }
 
