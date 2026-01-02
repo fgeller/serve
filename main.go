@@ -57,7 +57,7 @@ func main() {
 	if port == "" {
 		port = "0"
 	}
-	i := "0.0.0.0"
+	i := "127.0.0.1"
 	ln := listener(i, port)
 	go open(ln, i)
 	serve(ln)
